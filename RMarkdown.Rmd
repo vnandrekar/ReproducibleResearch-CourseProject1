@@ -31,4 +31,8 @@ aggregate(steps ~ date, data = activity, FUN = mean)
 aggregate(steps ~ date, data = activity, FUN = median)
 ```
 
+### 5. To calculate average daily activity pattern.
+```{r, echo=TRUE}
+plot(aggregate(steps ~ interval, data = activity, FUN = mean),type = "l")
+```
 

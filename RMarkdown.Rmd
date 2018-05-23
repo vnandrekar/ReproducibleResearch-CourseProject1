@@ -1,0 +1,34 @@
+#Reproducible Research - Course Project 1
+
+### 1. R code to read the downloaded dataset - Activity monitoring data.
+
+```{r, echo=TRUE}
+activity <- read.csv("activity.csv")
+sapply(activity, class)
+summary(activity)
+```
+
+### 2. Tranform the data in a suitable format
+
+```{r, echo=TRUE}
+activity$date <- as.Date(activity$date, format = "%Y-%m-%d")
+suppressWarnings(library(zoo))
+```
+
+### 3. Make a histogram of the total number of steps taken each day.
+
+```{r, echo=TRUE}
+colMeans(is.na(activity))
+steps_day <- aggregate(steps ~ date, rm.na = TRUE, data = activity, FUN = sum)
+
+plot(steps_day, type = "h", lwd = 10, lend = "square")
+```
+
+### 4. Mean and median number of steps taken each day
+
+```{r, echo=TRUE}
+aggregate(steps ~ date, data = activity, FUN = mean)
+aggregate(steps ~ date, data = activity, FUN = median)
+```
+
+
